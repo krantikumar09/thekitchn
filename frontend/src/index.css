@@ -27,7 +27,7 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem
+    --radius: 0.5rem;
   }
   .dark {
     --background: 240 10% 3.9%;
@@ -53,7 +53,7 @@
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
   }
 }
 @layer base {
@@ -90,3 +90,245 @@ body {
   @apply font-fontOpenSans text-textColor-default bg-background scroll-smooth;
 }
 
+.container {
+  @apply mx-auto px-4;
+}
+
+.section-margin {
+  @apply mt-20 mb-16;
+}
+
+/* custom classes */
+.slider-heading {
+  @apply font-fontMont font-bold text-3xl md:text-5xl text-white mb-3;
+}
+
+.heading1 {
+  @apply font-fontMont font-bold text-2xl md:text-4xl text-textColor-heading mb-2.5 leading-normal;
+}
+
+.heading2 {
+  @apply font-fontMont font-bold text-xl md:text-3xl text-textColor-heading mb-2 leading-normal;
+}
+
+.heading4 {
+  @apply font-fontMont font-bold text-base lg:text-lg text-textColor-heading leading-normal;
+}
+
+.heading5 {
+  @apply font-fontMont font-bold text-base md:text-lg text-textColor-heading leading-normal mb-3;
+}
+
+.body-text {
+  @apply font-fontOpenSans font-normal text-sm  text-textColor-body leading-relaxed;
+}
+
+.subheading1 {
+  @apply font-fontOpenSans font-medium text-base md:text-lg text-textColor-subheading leading-relaxed;
+}
+
+.subheading2 {
+  @apply font-fontOpenSans font-bold text-lg lg:text-xl text-main-primary leading-relaxed;
+}
+
+.slider-text {
+  @apply text-xl font-normal text-textColor-muted mb-2;
+}
+
+/* custom css */
+.header-row {
+  @apply flex items-center justify-between;
+}
+
+.logo {
+  @apply font-fontMont text-main-primary font-bold text-xl md:text-3xl;
+}
+
+.custom-navbar {
+  @apply absolute top-full right-1 flex flex-col items-start  px-4 py-3 rounded-sm gap-2.5 md:gap-4 md:static md:flex-row mt-2 md:mt-0 opacity-0 md:opacity-100 md:scale-100 bg-slate-200  md:bg-inherit z-[100];
+}
+
+.custom-navbar.active {
+  @apply opacity-100 scale-100 blur-0 visible;
+}
+
+.nav-item {
+  @apply text-sm md:text-base font-normal md:mx-2  cursor-pointer;
+}
+
+.slider-container::before {
+  @apply absolute content-none w-full h-full bg-black top-0 left-0;
+}
+
+.slider-btn {
+  @apply absolute top-1/2 transform -translate-y-1/2 z-50 text-textColor-heading bg-white p-2 hidden md:block;
+}
+
+.swiper-slide {
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+/* explore menu */
+.explore-menu-list {
+  @apply flex items-center justify-between gap-8 text-center my-5 overflow-x-scroll cursor-pointer;
+}
+
+.explore-menu-list::-webkit-scrollbar {
+  @apply hidden;
+}
+
+.menu-name {
+  @apply font-fontOpenSans font-medium text-sm md:text-base text-textColor-heading mt-3;
+}
+
+.add-to-cart-btn {
+  @apply absolute bottom-4 right-4;
+}
+
+/* footer */
+.footer-item {
+  @apply mb-3 cursor-pointer;
+}
+
+.footer-item {
+  @apply text-sm hover:translate-x-1 transition-transform duration-75;
+}
+
+.copyright-text {
+  @apply font-fontOpenSans font-normal text-xs md:text-sm text-textColor-body;
+}
+
+.social-icons {
+  @apply flex items-center gap-4 text-xl text-textColor-body cursor-pointer;
+}
+
+.login-switch-link {
+  @apply font-medium text-textColor-link underline underline-offset-4 cursor-pointer;
+}
+
+/* place order */
+
+.form-col {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-2;
+}
+.container {
+  @apply mx-auto px-4;
+}
+
+.section-margin {
+  @apply mt-20 mb-16;
+}
+
+/* custom classes */
+.slider-heading {
+  @apply font-fontMont font-bold text-3xl md:text-5xl text-white mb-3;
+}
+
+.heading1 {
+  @apply font-fontMont font-bold text-2xl md:text-4xl text-textColor-heading mb-2.5 leading-normal;
+}
+
+.heading2 {
+  @apply font-fontMont font-bold text-xl md:text-3xl text-textColor-heading mb-2 leading-normal;
+}
+
+.heading4 {
+  @apply font-fontMont font-bold text-base lg:text-lg text-textColor-heading leading-normal;
+}
+
+.heading5 {
+  @apply font-fontMont font-bold text-base md:text-lg text-textColor-heading leading-normal mb-3;
+}
+
+.body-text {
+  @apply font-fontOpenSans font-normal text-sm  text-textColor-body leading-relaxed;
+}
+
+.subheading1 {
+  @apply font-fontOpenSans font-medium text-base md:text-lg text-textColor-subheading leading-relaxed;
+}
+
+.subheading2 {
+  @apply font-fontOpenSans font-bold text-lg lg:text-xl text-main-primary leading-relaxed;
+}
+
+.slider-text {
+  @apply text-xl font-normal text-textColor-muted mb-2;
+}
+
+/* custom css */
+.header-row {
+  @apply flex items-center justify-between;
+}
+
+.logo {
+  @apply font-fontMont text-main-primary font-bold text-xl md:text-3xl;
+}
+
+.custom-navbar {
+  @apply absolute top-full right-1 flex flex-col items-start  px-4 py-3 rounded-sm gap-2.5 md:gap-4 md:static md:flex-row mt-2 md:mt-0 opacity-0 md:opacity-100 md:scale-100 bg-slate-200  md:bg-inherit z-[100];
+}
+
+.custom-navbar.active {
+  @apply opacity-100 scale-100 blur-0 visible;
+}
+
+.nav-item {
+  @apply text-sm md:text-base font-normal md:mx-2  cursor-pointer;
+}
+
+.slider-container::before {
+  @apply absolute content-none w-full h-full bg-black top-0 left-0;
+}
+
+.slider-btn {
+  @apply absolute top-1/2 transform -translate-y-1/2 z-50 text-textColor-heading bg-white p-2 hidden md:block;
+}
+
+.swiper-slide {
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+/* explore menu */
+.explore-menu-list {
+  @apply flex items-center justify-between gap-8 text-center my-5 overflow-x-scroll cursor-pointer;
+}
+
+.explore-menu-list::-webkit-scrollbar {
+  @apply hidden;
+}
+
+.menu-name {
+  @apply font-fontOpenSans font-medium text-sm md:text-base text-textColor-heading mt-3;
+}
+
+.add-to-cart-btn {
+  @apply absolute bottom-4 right-4;
+}
+
+/* footer */
+.footer-item {
+  @apply mb-3 cursor-pointer;
+}
+
+.footer-item {
+  @apply text-sm hover:translate-x-1 transition-transform duration-75;
+}
+
+.copyright-text {
+  @apply font-fontOpenSans font-normal text-xs md:text-sm text-textColor-body;
+}
+
+.social-icons {
+  @apply flex items-center gap-4 text-xl text-textColor-body cursor-pointer;
+}
+
+.login-switch-link {
+  @apply font-medium text-textColor-link underline underline-offset-4 cursor-pointer;
+}
+
+/* place order */
+
+.form-col {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-2;
+}
