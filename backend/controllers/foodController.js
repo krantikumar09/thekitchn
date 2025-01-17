@@ -19,12 +19,9 @@ const addFood = async (req, res) => {
       category: req.body.category,
       image: image_filename,
     };
-    console.log("Food data before saving:", foodData);
 
     const food = new foodModel(foodData);
     await food.save();
-
-    console.log("Food saved successfully:", food);
 
     res.status(200).json({ success: true, message: "Food added!", data: food });
   } catch (error) {
