@@ -50,6 +50,9 @@ const AddProduct = () => {
     },
   });
 
+  const menuList = ["Salad", "Rolls", "Deserts", "Sandwich", "Cake", "Pure Veg", "Noodles"]
+
+
   async function onSubmit(data) {
     try {
       const formData = new FormData();
@@ -152,9 +155,11 @@ const AddProduct = () => {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="Salad">Salad</SelectItem>
-                          <SelectItem value="banana">Banana</SelectItem>
-                          <SelectItem value="orange">Orange</SelectItem>
+                          {
+                            menuList.map((menu) => (
+                              <SelectItem key={menu} value={menu}>{menu}</SelectItem>
+                            ))
+                          }
                         </SelectGroup>
                       </SelectContent>
                     </Select>

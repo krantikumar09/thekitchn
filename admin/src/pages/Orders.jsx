@@ -1,7 +1,11 @@
-import React from "react";
+import Heading from "../components/Heading";
 
 const Orders = () => {
-  return <div>Orders</div>;
+  return (
+    <div>
+      <Heading heading="All Orders"/>
+    </div>
+  );
 };
 
 export default Orders;

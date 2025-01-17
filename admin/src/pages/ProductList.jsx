@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { X } from "lucide-react";
+import Heading from "../components/Heading";
 
 const ProductList = () => {
   const [list, setList] = useState([]);
@@ -42,6 +43,7 @@ const ProductList = () => {
 
   return (
     <div className="list">
+      <Heading heading="All Products"/>
       <Table>
         <TableHeader>
           <TableRow>
@@ -72,10 +74,10 @@ const ProductList = () => {
                 <TableCell className="text-center">
                   &#8377; {item.price}
                 </TableCell>
-                <TableCell className="text-center">
+                <TableCell className="">
                   <X
                     onClick={() => removeFood(item._id)}
-                    className="text-center text-xs cursor-pointer"
+                    className="w-4 h-4 mx-auto cursor-pointer"
                   />
                 </TableCell>
               </TableRow>
