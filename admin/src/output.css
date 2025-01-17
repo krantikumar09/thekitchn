@@ -737,12 +737,20 @@ body {
   margin-right: 0.5rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .flex {
   display: flex;
 }
 
 .inline-flex {
   display: inline-flex;
+}
+
+.table {
+  display: table;
 }
 
 .grid {
@@ -826,6 +834,10 @@ body {
   height: 100svh;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .max-h-96 {
   max-height: 24rem;
 }
@@ -894,6 +906,10 @@ body {
   width: 100%;
 }
 
+.w-28 {
+  width: 7rem;
+}
+
 .min-w-0 {
   min-width: 0px;
 }
@@ -922,12 +938,20 @@ body {
   max-width: 24rem;
 }
 
+.max-w-20 {
+  max-width: 5rem;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
 
 .shrink-0 {
   flex-shrink: 0;
+}
+
+.caption-bottom {
+  caption-side: bottom;
 }
 
 .-translate-x-1\/2 {
@@ -957,6 +981,10 @@ body {
 
 .cursor-default {
   cursor: default;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .select-none {
@@ -1117,8 +1145,17 @@ body {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.bg-muted\/50 {
+  background-color: hsl(var(--muted) / 0.5);
+}
+
 .fill-current {
   fill: currentColor;
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .p-0 {
@@ -1217,6 +1254,10 @@ body {
 
 .text-center {
   text-align: center;
+}
+
+.align-middle {
+  vertical-align: middle;
 }
 
 .font-fontMont {
@@ -1600,6 +1641,10 @@ body {
   background-color: hsl(var(--secondary) / 0.8);
 }
 
+.hover\:bg-muted\/50:hover {
+  background-color: hsl(var(--muted) / 0.5);
+}
+
 .hover\:text-accent-foreground:hover {
   color: hsl(var(--accent-foreground));
 }
@@ -1746,6 +1791,10 @@ body {
 
 .data-\[state\=open\]\:bg-secondary[data-state="open"] {
   background-color: hsl(var(--secondary));
+}
+
+.data-\[state\=selected\]\:bg-muted[data-state="selected"] {
+  background-color: hsl(var(--muted));
 }
 
 .data-\[active\=true\]\:font-medium[data-active="true"] {
@@ -2058,6 +2107,15 @@ body {
   }
 }
 
+.\[\&\:has\(\[role\=checkbox\]\)\]\:pr-0:has([role=checkbox]) {
+  padding-right: 0px;
+}
+
+.\[\&\>\[role\=checkbox\]\]\:translate-y-\[2px\]>[role=checkbox] {
+  --tw-translate-y: 2px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .\[\&\>button\]\:hidden>button {
   display: none;
 }
@@ -2084,6 +2142,10 @@ body {
   flex-shrink: 0;
 }
 
+.\[\&\>tr\]\:last\:border-b-0:last-child>tr {
+  border-bottom-width: 0px;
+}
+
 .\[\&_svg\]\:pointer-events-none svg {
   pointer-events: none;
 }
@@ -2095,6 +2157,14 @@ body {
 
 .\[\&_svg\]\:shrink-0 svg {
   flex-shrink: 0;
+}
+
+.\[\&_tr\:last-child\]\:border-0 tr:last-child {
+  border-width: 0px;
+}
+
+.\[\&_tr\]\:border-b tr {
+  border-bottom-width: 1px;
 }
 
 [data-side=left][data-collapsible=offcanvas] .\[\[data-side\=left\]\[data-collapsible\=offcanvas\]_\&\]\:-right-2 {
