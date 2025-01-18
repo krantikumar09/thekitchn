@@ -10,8 +10,8 @@ const createToken = (id) => {
 
 // login user
 const loginUser = async (req, res) => {
-  const { email, password } = req.body;
   try {
+    const { email, password } = req.body;
     const user = await userModel.findOne({ email });
 
     if (!user) {
@@ -29,15 +29,14 @@ const loginUser = async (req, res) => {
 
     const token = createToken(user._id);
 
-    res.json({ success: true, message: "Logged In!" });
+    res.json({ success: true, token, message: "Logged In!" });
   } catch (error) {}
 };
 
 // register user
 const registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
-
   try {
+    const { name, email, password } = req.body;
     // checking user exists
     const exists = await userModel.findOne({ email });
     if (exists) {
@@ -72,13 +71,24 @@ const registerUser = async (req, res) => {
     const user = await newUser.save();
     const token = createToken(user._id);
 
-    res
-      .status(200)
-      .json({ success: true, token, message: "Registration successfull!" });
+    res.json({ success: true, token, message: "Registration successfull!" });
   } catch (error) {
     console.log("Error in registerUser: ", error);
-    res.status(500).json({ success: false, message: "Something went wrong!" });
+    res.json({ success: false, message: "Something went wrong!" });
   }
 };
 
-export { loginUser, registerUser };
+// user details
+const getUser = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await userModel.findOne({ email }).select("-password");
+    res.json({ success: true, data: user });
+  } catch (error) {
+    console.log("Error in getUser: ", error);
+    res.json({ success: false, message: "Something went wrong! ", error });
+  }
+};
+
+export { loginUser, registerUser, getUser };

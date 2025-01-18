@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import { Button } from "@/components/ui/button";
@@ -10,12 +10,11 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { StoreContext } from "../context/StoreContext";
-
-// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import HeaderProfileDropdown from "./HeaderProfileDropdown";
 
 const Header = ({ setIsLoginPopOpen }) => {
   const [navOpen, setNavOpen] = useState(false);
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const { getTotalCartAmount, token } = useContext(StoreContext);
 
   return (
     <header className="header relative py-4" id="#home">
@@ -58,13 +57,16 @@ const Header = ({ setIsLoginPopOpen }) => {
             </Button>
 
             {/* login / signup button */}
-            <Button onClick={() => setIsLoginPopOpen(true)} className="hidden md:block">Login</Button>
-
-            {/* avatar */}
-            {/* <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar> */}
+            {token ? (
+              <HeaderProfileDropdown />
+            ) : (
+              <Button
+                onClick={() => setIsLoginPopOpen(true)}
+                className="hidden md:block"
+              >
+                Login
+              </Button>
+            )}
           </div>
         </div>
       </div>

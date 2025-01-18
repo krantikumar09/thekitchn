@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { food_list } from "../assets/assets";
 
 export const StoreContext = createContext(null);
@@ -6,6 +6,7 @@ export const StoreContext = createContext(null);
 const StoreContextProvided = (props) => {
   const rupeeSign = `&#8377;`;
   const [cartItem, setCartItem] = useState({});
+  const [token, setToken] = useState();
 
   const addToCart = (itemId) => {
     if (!cartItem[itemId]) {
@@ -23,12 +24,18 @@ const StoreContextProvided = (props) => {
     let totalAmount = 0;
     for (const item in cartItem) {
       if (cartItem[item] > 0) {
-        let itemInfo = food_list.find((product) => product._id === item);
+        let itemInfo = food_list.find((product) => product._id === itemId);
         totalAmount += itemInfo.price * cartItem[item];
       }
     }
     return totalAmount;
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setToken(localStorage.getItem("token"));
+    }
+  }, []);
 
   const contextValue = {
     rupeeSign,
@@ -38,6 +45,8 @@ const StoreContextProvided = (props) => {
     addToCart,
     removeFromCart,
     getTotalCartAmount,
+    token,
+    setToken,
   };
   return (
     <StoreContext.Provider value={contextValue}>

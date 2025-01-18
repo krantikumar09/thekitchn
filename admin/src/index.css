@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -89,4 +90,8 @@ html {
 
 body {
   @apply font-fontOpenSans text-textColor-default bg-background scroll-smooth;
+}
+
+.custom-toast {
+  @apply font-fontOpenSans font-bold font-sm text-textColor-default;
 }

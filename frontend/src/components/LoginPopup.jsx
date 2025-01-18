@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -20,9 +20,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { StoreContext } from "../context/StoreContext";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-// schema for zod
-const formSchema = z.object({
+// sign up form schema
+const signUpSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 character.",
   }),
@@ -32,25 +35,77 @@ const formSchema = z.object({
   password: z.string().min(6, {
     message: "Password must be at least 6 characters,",
   }),
+  terms: z.boolean().refine((val) => val === true, {
+    message: "You must agree to the terms and conditions.",
+  }),
+});
+
+// login form schema
+const loginSchema = z.object({
+  email: z.string().email({
+    message: "Please enter a valid email.",
+  }),
+  password: z.string().min(6, {
+    message: "Password must be at least 6 characters.",
+  }),
 });
 
 const LoginPopup = ({ isOpen, onClose }) => {
+  const { setToken } = useContext(StoreContext);
   const [currentState, setCurrentState] = useState("Sign Up");
+
+  // switch schema dynamically based on currentState
+  const formSchema = currentState === "Sign Up" ? signUpSchema : loginSchema;
 
   // Initialize the form
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      name: "",
       email: "",
       password: "",
+      terms: false,
     },
   });
 
   // handle form submission
-  function onSubmit(values) {
-    console.log("Form Values:", values);
+  async function onSubmit(data) {
+    if (currentState === "Sign Up" && !data.terms) {
+      toast.error("You must agree to the terms and condition!");
+      return;
+    }
+
+    try {
+      let newUrl = import.meta.env.VITE_BACKEND_URL;
+      newUrl +=
+        currentState === "Login" ? "/api/user/login" : "/api/user/register";
+
+      const res = await axios.post(newUrl, data, {
+        headers: { "Content-Type": "application/json" },
+      });
+      
+      if (res.data.success) {
+        localStorage.setItem("token", res.data.token);
+        setToken(res.data.token);
+        toast.success(res.data.message);
+        onClose();
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong! ", error);
+    }
   }
+
+  const handleformSwitch = (state) => {
+    setCurrentState(state);
+    form.reset();
+  };
+
+  useEffect(() => {
+    console.log("🟡 Current State:", currentState);
+  }, [currentState]);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -61,8 +116,9 @@ const LoginPopup = ({ isOpen, onClose }) => {
           </DialogTitle>
         </DialogHeader>
 
-        <Form {...form} className="space-y-4">
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            {/* name field sign up */}
             {currentState === "Sign Up" && (
               <FormField
                 control={form.control}
@@ -79,6 +135,7 @@ const LoginPopup = ({ isOpen, onClose }) => {
               />
             )}
 
+            {/* email field */}
             <FormField
               control={form.control}
               name="email"
@@ -97,6 +154,7 @@ const LoginPopup = ({ isOpen, onClose }) => {
               )}
             />
 
+            {/* password field */}
             <FormField
               control={form.control}
               name="password"
@@ -110,31 +168,55 @@ const LoginPopup = ({ isOpen, onClose }) => {
                 </FormItem>
               )}
             />
+
+            {/* submit button */}
             <Button type="submit" className="w-full my-4">
               {currentState === "Sign Up" ? "Create Account" : "Login"}
             </Button>
 
             <div className="flex items-start space-x-2 cursor-pointer">
-              <Checkbox id="terms" />
-              <label
-                htmlFor="terms"
-                className="text-sm font-normal text-textColor-body leading-none cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                By continuing, i agree to the terms of use & privacy policy.
-              </label>
+              {/* Terms and Conditions Checkbox (required for sign up) */}
+              {currentState === "Sign Up" && (
+                <FormField
+                  control={form.control}
+                  name="terms"
+                  rules={{ required: "You must agree to the terms" }}
+                  render={({ field }) => (
+                    <FormItem className="flex items-start space-x-2 cursor-pointer">
+                      <Checkbox
+                        id="terms"
+                        onCheckedChange={(checked) => field.onChange(checked)}
+                      />
+                      <label
+                        htmlFor="terms"
+                        className="text-sm font-normal text-textColor-body leading-none cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        By continuing, I agree to the terms of use & privacy
+                        policy.
+                      </label>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
             </div>
 
             {currentState === "Login" ? (
               <p className="body-text text-center">
                 Create a new account?{" "}
-                <span className="login-switch-link" onClick={() => setCurrentState("Sign Up")}>Create Account.</span>
+                <span
+                  className="login-switch-link"
+                  onClick={() => handleformSwitch("Sign Up")}
+                >
+                  Create Account.
+                </span>
               </p>
             ) : (
               <p className="body-text text-center">
                 Already have an account?{" "}
                 <span
                   className="login-switch-link"
-                  onClick={() => setCurrentState("Login")}
+                  onClick={() => handleformSwitch("Login")}
                 >
                   Login.
                 </span>
