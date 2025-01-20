@@ -40,7 +40,7 @@ const PlaceOrder = () => {
   return (
     <section className="place-order section-margin">
       <div className="container">
-        <div className="flex flex-col md:flex-row items-start gap-y-6 justify-between">
+        <div className="flex flex-col md:flex-row items-start gap-y-6 gap-x-6 justify-between">
           <div className="max-w-xl w-full">
             <h2 className="heading2">Delivery Information</h2>
 

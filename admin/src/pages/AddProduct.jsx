@@ -50,7 +50,7 @@ const AddProduct = () => {
     },
   });
 
-  const menuList = ["Salad", "Rolls", "Deserts", "Sandwich", "Cake", "Pure Veg", "Noodles"]
+  const menuList = ["Salad", "Rolls", "Deserts", "Sandwich", "Cake", "Pure Veg", "Pasta", "Noodles"]
 
 
   async function onSubmit(data) {

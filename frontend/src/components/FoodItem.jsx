@@ -13,12 +13,12 @@ import { Button } from "@/components/ui/button";
 import { StoreContext } from "../context/StoreContext";
 
 const FoodItem = ({ id, name, description, image, price }) => {
-  const { cartItem, addToCart, removeFromCart } = useContext(StoreContext);
+  const { cartItem, addToCart, removeFromCart, API_URL } = useContext(StoreContext);
 
   return (
     <Card className="overflow-hidden border-none shadow-md">
       <CardHeader className="p-0 relative">
-        <img className="w-full" src={image} alt={name} loading="lazy" />
+        <img className="w-full" src={API_URL + '/images/' + image} alt={name} loading="lazy" />
         <div className="add-to-cart-btn">
           {!cartItem[id] ? (
             <Button onClick={() => addToCart(id)} variant="itemBtn" size="icon">

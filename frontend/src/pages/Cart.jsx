@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import CartTotal from "../components/CartTotal";
 
 const Cart = () => {
-  const { cartItem, food_list, removeFromCart } =
+  const { cartItem, foodList, removeFromCart, API_URL } =
     useContext(StoreContext);
 
   const navigate = useNavigate();
@@ -40,14 +40,14 @@ const Cart = () => {
           </TableHeader>
 
           <TableBody>
-            {food_list.map((item, index) => {
+            {foodList.map((item, index) => {
               if (cartItem[item._id] > 0) {
                 return (
                   <TableRow key={index}>
                     <TableCell>
                       <img
                         className="max-w-20 w-full h-auto object-cover rounded-md"
-                        src={item.image}
+                        src={API_URL + '/images/' + item.image}
                         alt={item.name}
                         loading="lazy"
                       />
