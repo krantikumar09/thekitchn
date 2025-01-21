@@ -1,6 +1,6 @@
 import basket_icon from "./basket_icon.png";
 import logo from "./logo.png";
-import avatar from "./avatar.jpg"
+import avatar from "./avatar.jpg";
 import header_img from "./header-img.jpg";
 import search_icon from "./search_icon.png";
 import menu_1 from "./menu_1.png";
@@ -62,6 +62,8 @@ import logout_icon from "./logout_icon.png";
 import parcel_icon from "./parcel_icon.png";
 import exit from "./exit.png";
 import shopping_bag from "./shopping-bag.png";
+import order_success from "./order_success.gif";
+import order_cancel from "./order_cancel.gif";
 
 export const assets = {
   avatar,
@@ -86,6 +88,8 @@ export const assets = {
   parcel_icon,
   exit,
   shopping_bag,
+  order_success,
+  order_cancel,
 };
 
 export const menu_list = [

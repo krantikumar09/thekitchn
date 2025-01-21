@@ -332,3 +332,7 @@ body {
 .form-col {
   @apply grid grid-cols-1 md:grid-cols-2 gap-2;
 }
+
+.spinner {
+  @apply w-[100px] h-[100px] place-self-center border border-red-600 rounded-full;
+}
