@@ -86,4 +86,15 @@ const getUserOrders = async (req, res) => {
   }
 };
 
-export { placeOrder, verifyOrder, getUserOrders };
+// get orders for admin
+const getAllOrdersForAdmin = async (req, res) => {
+  try {
+    const orders = await orderModel.find({});
+    res.json({ success: true, data: orders });
+  } catch (error) {
+    console.log("error in getAllOrderForAdmin: ", error);
+    res.json({ success: false, message: "Something went wrong!" });
+  }
+};
+
+export { placeOrder, verifyOrder, getUserOrders, getAllOrdersForAdmin };

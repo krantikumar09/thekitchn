@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -93,5 +92,5 @@ body {
 }
 
 .custom-toast {
-  @apply font-fontOpenSans font-bold font-sm text-textColor-default;
+  @apply font-fontOpenSans font-bold text-sm text-textColor-default;
 }
