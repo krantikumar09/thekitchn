@@ -64,6 +64,7 @@ import exit from "./exit.png";
 import shopping_bag from "./shopping-bag.png";
 import order_success from "./order_success.gif";
 import order_cancel from "./order_cancel.gif";
+import delivery_man from "./delivery_man.png"
 
 export const assets = {
   avatar,
@@ -90,6 +91,7 @@ export const assets = {
   shopping_bag,
   order_success,
   order_cancel,
+  delivery_man
 };
 
 export const menu_list = [

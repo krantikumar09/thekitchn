@@ -60,6 +60,7 @@ const StoreContextProvided = (props) => {
     setCartItem(res.data.cartData);
   };
 
+
   useEffect(() => {
     async function loadData() {
       await fetchFoodList();

@@ -23,7 +23,7 @@ const Cart = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="cart-section section-margin">
+    <section className="cart-section page-margin">
       <div className="container">
         <SectionHeading heading="Cart" />
 
@@ -47,7 +47,7 @@ const Cart = () => {
                     <TableCell>
                       <img
                         className="max-w-20 w-full h-auto object-cover rounded-md"
-                        src={API_URL + '/images/' + item.image}
+                        src={API_URL + "/images/" + item.image}
                         alt={item.name}
                         loading="lazy"
                       />

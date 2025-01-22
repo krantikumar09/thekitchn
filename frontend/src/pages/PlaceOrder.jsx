@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../context/StoreContext";
 import {
   Form,
@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import CartTotal from "../components/CartTotal";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const PlaceOrder = () => {
   const { getTotalCartAmount, token, foodList, cartItem, API_URL } =
@@ -68,6 +69,13 @@ const PlaceOrder = () => {
       console.log(error);
     }
   }
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) navigate('/cart')
+      else if (getTotalCartAmount() === 0) navigate('/cart')
+  }, [token]);
 
   return (
     <section className="place-order section-margin">

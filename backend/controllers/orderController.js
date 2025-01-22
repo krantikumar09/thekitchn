@@ -74,4 +74,16 @@ const verifyOrder = async (req, res) => {
   }
 };
 
-export { placeOrder, verifyOrder };
+//order from frontend
+const getUserOrders = async (req, res) => {
+  try {
+    const orders = await orderModel.find({ userId: req.body.userId });
+
+    res.json({ success: true, data: orders });
+  } catch (error) {
+    console.log("error in getUserOrders", error);
+    res.json({ success: false, message: "Something went wrong!" });
+  }
+};
+
+export { placeOrder, verifyOrder, getUserOrders };

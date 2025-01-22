@@ -219,6 +219,10 @@ body {
   @apply mt-20 mb-16;
 }
 
+.page-margin {
+  @apply mt-4 sm:mt-8 mb-16;
+}
+
 /* custom classes */
 .slider-heading {
   @apply font-fontMont font-bold text-3xl md:text-5xl text-white mb-3;

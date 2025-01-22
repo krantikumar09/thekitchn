@@ -38,7 +38,7 @@ const HeaderProfileDropdown = () => {
             <Link to="/profile">My Account</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link to="#">Orders</Link>
+            <Link to="/myorder">Orders</Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
