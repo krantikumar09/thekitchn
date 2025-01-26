@@ -29,6 +29,20 @@ const Orders = () => {
     }
   };
 
+  const handleStatus = async (status, orderId) => {
+    try {
+      const res = await axios.post(`${API_URL}/api/order/status`, {
+        orderId,
+        status: status,
+      });
+
+      res.data.success ? await fetchOrders() : console.log(res.data.message);
+    } catch (error) {
+      console.log(error);
+      toast("Something went wrong! Please try again.");
+    }
+  };
+
   useEffect(() => {
     fetchOrders();
   }, []);
@@ -94,7 +108,10 @@ const Orders = () => {
               </p>
 
               <div className="max-w-[160px]">
-                <Select>
+                <Select
+                  onValueChange={(value) => handleStatus(value, order._id)}
+                  defaultValue={order.status}
+                >
                   <SelectTrigger className="">
                     <SelectValue placeholder="Select status" />
                   </SelectTrigger>
@@ -103,8 +120,8 @@ const Orders = () => {
                       <SelectItem value="Food Processing">
                         Food Processing
                       </SelectItem>
-                      <SelectItem value="Our for delivery">
-                        Our for delivery
+                      <SelectItem value="Out for delivery">
+                        Out for delivery
                       </SelectItem>
                       <SelectItem value="Delivered">Delivered</SelectItem>
                     </SelectGroup>

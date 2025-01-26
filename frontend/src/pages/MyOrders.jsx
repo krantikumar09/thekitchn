@@ -36,7 +36,7 @@ const MyOrders = () => {
 
   useEffect(() => {
     if (token) fetchOrders();
-  }, [token]);
+  }, [token, data]);
 
   return (
     <section className="myorders page-margin">
@@ -91,7 +91,7 @@ const MyOrders = () => {
               </div>
 
               <div className="w-full text-right">
-                <Button variant="outline" size="sm">
+                <Button onClick={fetchOrders} variant="outline" size="sm">
                   Track Order
                 </Button>
               </div>

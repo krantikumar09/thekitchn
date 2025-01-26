@@ -77,7 +77,9 @@ const verifyOrder = async (req, res) => {
 //order from frontend
 const getUserOrders = async (req, res) => {
   try {
-    const orders = await orderModel.find({ userId: req.body.userId });
+    const orders = await orderModel
+      .find({ userId: req.body.userId })
+      .sort({ date: -1 });
 
     res.json({ success: true, data: orders });
   } catch (error) {
@@ -89,7 +91,7 @@ const getUserOrders = async (req, res) => {
 // get orders for admin
 const getAllOrdersForAdmin = async (req, res) => {
   try {
-    const orders = await orderModel.find({});
+    const orders = await orderModel.find({}).sort({ date: -1 });
     res.json({ success: true, data: orders });
   } catch (error) {
     console.log("error in getAllOrderForAdmin: ", error);
@@ -97,4 +99,23 @@ const getAllOrdersForAdmin = async (req, res) => {
   }
 };
 
-export { placeOrder, verifyOrder, getUserOrders, getAllOrdersForAdmin };
+// update order status
+const updateOrderStatus = async (req, res) => {
+  try {
+    await orderModel.findByIdAndUpdate(req.body.orderId, {
+      status: req.body.status,
+    });
+    res.json({ success: true, message: "Status updated!" });
+  } catch (error) {
+    console.log("Error in updateOrderStatus: ", error);
+    res.json({ success: false, message: "Something went wrong!" });
+  }
+};
+
+export {
+  placeOrder,
+  verifyOrder,
+  getUserOrders,
+  getAllOrdersForAdmin,
+  updateOrderStatus,
+};
