@@ -14,11 +14,11 @@ import HeaderProfileDropdown from "./HeaderProfileDropdown";
 
 const Header = ({ setIsLoginPopOpen }) => {
   const [navOpen, setNavOpen] = useState(false);
-  const { cartItem, token } = useContext(StoreContext);
+  const { getTotalCartItems, token, cartItem } = useContext(StoreContext);
 
   useEffect(() => {
-    console.log(cartItem.length);
-  }, []);
+    console.log(cartItem)
+  }, [cartItem]);
 
   return (
     <header className="header relative py-4" id="#home">
@@ -29,7 +29,7 @@ const Header = ({ setIsLoginPopOpen }) => {
             <Button
               className="menu-btn md:hidden"
               variant="iconBtn"
-                size="iconBtn"
+              size="iconBtn"
               onClick={() => setNavOpen((prev) => !prev)}
             >
               {navOpen ? (
@@ -67,6 +67,7 @@ const Header = ({ setIsLoginPopOpen }) => {
                 className="outline-none relative"
               >
                 <FontAwesomeIcon icon={faCartShopping} />
+                <span className="absolute top-0 right-0 w-[16px] h-[16px] bg-textColor-link/80 rounded-full font-fontOpenSans font-bold text-[10px] text-textColor-contrast flex items-center justify-center">{getTotalCartItems()}</span>
               </Button>
             </Link>
 
@@ -74,11 +75,7 @@ const Header = ({ setIsLoginPopOpen }) => {
             {token ? (
               <HeaderProfileDropdown />
             ) : (
-              <Button
-                onClick={() => setIsLoginPopOpen(true)}
-              >
-                Login
-              </Button>
+              <Button onClick={() => setIsLoginPopOpen(true)}>Login</Button>
             )}
           </div>
         </div>

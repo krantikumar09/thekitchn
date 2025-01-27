@@ -22,15 +22,20 @@ const addToCart = async (req, res) => {
 const removeFromCart = async (req, res) => {
   try {
     let userData = await userModel.findOne({ _id: req.body.userId });
-    let cartData = await userData.cartData;
+    let cartData = { ...userData.cartData }; // Copy cart data
 
-    if (cartData[req.body.itemId] > 0) cartData[req.body.itemId] -= 1;
+    if (cartData[req.body.itemId] > 1) {
+      cartData[req.body.itemId] -= 1; // Reduce quantity
+    } else {
+      delete cartData[req.body.itemId]; // ✅ Remove item when quantity is 0
+    }
 
     await userModel.findByIdAndUpdate(req.body.userId, { cartData });
-    res.json({ success: true, message: "Product remove from cart!" });
+
+    res.json({ success: true, message: "Product removed from cart!" });
   } catch (error) {
-    console.log("Error in removeFromCart: ", error);
-    res.json({ success: false, message: "Something went wrong!" });
+    console.error("Error in removeFromCart:", error);
+    res.status(500).json({ success: false, message: "Something went wrong!" });
   }
 };
 
