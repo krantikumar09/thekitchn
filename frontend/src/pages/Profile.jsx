@@ -3,8 +3,7 @@ const Profile = () => {
     <section className="profile">
       <div className="container">
         <div>
-          <h1>Krantikumar</h1>
-          <p>krantikumar@gmail.com</p>
+          <h1>Profile</h1>
         </div>
       </div>
     </section>

@@ -55,12 +55,12 @@ const StoreContextProvided = (props) => {
     }
   };
 
-  // ✅ Fix `getTotalCartItems()`: Counts only items with quantity > 0
+  // ✅ getTotalCartItems()
   const getTotalCartItems = () => {
     return Object.values(cartItem).filter((qty) => qty > 0).length;
   };
 
-  // ✅ Fix `getTotalCartAmount()`: Ensures item exists before accessing `price`
+  // ✅ getTotalCartAmount()
   const getTotalCartAmount = () => {
     return Object.entries(cartItem).reduce((total, [itemId, qty]) => {
       const item = foodList.find((product) => product._id === itemId);
@@ -105,7 +105,8 @@ const StoreContextProvided = (props) => {
     }
 
     loadData();
-  }, []); // ✅ Removed `foodList` from dependencies to prevent infinite re-fetching
+  }, []); 
+
 
   const contextValue = {
     API_URL,

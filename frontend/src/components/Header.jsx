@@ -14,11 +14,7 @@ import HeaderProfileDropdown from "./HeaderProfileDropdown";
 
 const Header = ({ setIsLoginPopOpen }) => {
   const [navOpen, setNavOpen] = useState(false);
-  const { getTotalCartItems, token, cartItem } = useContext(StoreContext);
-
-  useEffect(() => {
-    console.log(cartItem)
-  }, [cartItem]);
+  const { getTotalCartItems, token } = useContext(StoreContext);
 
   return (
     <header className="header relative py-4" id="#home">

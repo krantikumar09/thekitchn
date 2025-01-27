@@ -19,7 +19,6 @@ const MyOrders = () => {
 
     if (res.data.success) {
       setData(res.data.data);
-      console.log(res.data.data);
     } else {
       toast(res.data.message);
     }

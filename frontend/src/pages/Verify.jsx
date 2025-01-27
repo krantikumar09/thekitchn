@@ -18,17 +18,18 @@ const Verify = () => {
       success,
       orderId,
     });
-    console.log(success);
+    
+    if (res.data.success) navigate('/myorder')
 
-    if (res.data.success) {
-      setInterval(() => {
-        navigate("/myorder");
-      }, 20000);
-    } else {
-      setInterval(() => {
-        navigate("/");
-      }, 20000);
-    }
+    // if (res.data.success) {
+    //   setTimeout(() => {
+    //     navigate("/myorder");
+    //   }, 1000);
+    // } else {
+    //   setTimeout(() => {
+    //     navigate("/");
+    //   }, 1000);
+    // }
   };
 
   useEffect(() => {

@@ -79,15 +79,46 @@ const registerUser = async (req, res) => {
 };
 
 // user details
+// const getUser = async (req, res) => {
+//   try {
+//     const { email } = req.body;
+
+//     const user = await userModel.findOne({ email }).select("-password");
+//     res.json({ success: true, data: user });
+//   } catch (error) {
+//     console.log("Error in getUser: ", error);
+//     res.json({ success: false, message: "Something went wrong! ", error });
+//   }
+// };
+
 const getUser = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { token } = req.body; // Get token from the request body
 
-    const user = await userModel.findOne({ email }).select("-password");
-    res.json({ success: true, data: user });
+    if (!token) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Token is required!" });
+    }
+
+    // Decode the token using the secret key
+    const decoded = jwt.verify(token, process.env.JWT_TOKEN); // Make sure the secret key is provided
+
+    console.log(decoded);
+
+    // Fetch user data using the decoded userId (or email)
+    const user = await userModel.findById(decoded.userId);
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found!" });
+    }
+
+    res.json({ success: true, userData: user });
   } catch (error) {
-    console.log("Error in getUser: ", error);
-    res.json({ success: false, message: "Something went wrong! ", error });
+    console.error("Error fetching user data:", error);
+    res.status(500).json({ success: false, message: "Something went wrong!" });
   }
 };
 
