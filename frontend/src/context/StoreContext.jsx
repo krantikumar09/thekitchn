@@ -35,6 +35,7 @@ const StoreContextProvided = (props) => {
       ));
   };
 
+
   const getTotalCartAmount = (itemId) => {
     let totalAmount = 0;
     for (const item in cartItem) {
@@ -60,7 +61,6 @@ const StoreContextProvided = (props) => {
     setCartItem(res.data.cartData);
   };
 
-
   useEffect(() => {
     async function loadData() {
       await fetchFoodList();
@@ -72,6 +72,7 @@ const StoreContextProvided = (props) => {
 
     loadData();
   }, [foodList]);
+
 
   const contextValue = {
     API_URL,

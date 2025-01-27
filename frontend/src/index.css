@@ -270,7 +270,7 @@ body {
 }
 
 .custom-navbar {
-  @apply absolute top-full right-1 flex flex-col items-start  px-4 py-3 rounded-sm gap-2.5 md:gap-4 md:static md:flex-row mt-2 md:mt-0 opacity-0 md:opacity-100 md:scale-100 bg-slate-200  md:bg-inherit z-[100];
+  @apply absolute top-full left-1 flex flex-col items-start  px-4 py-3 rounded-sm gap-2.5 md:gap-4 md:static md:flex-row mt-2 md:mt-0 opacity-0 md:opacity-100 md:scale-100 bg-white  md:bg-inherit z-[100];
 }
 
 .custom-navbar.active {

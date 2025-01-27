@@ -52,7 +52,7 @@ const loginSchema = z.object({
 
 const LoginPopup = ({ isOpen, onClose }) => {
   const { setToken } = useContext(StoreContext);
-  const [currentState, setCurrentState] = useState("Sign Up");
+  const [currentState, setCurrentState] = useState("Login");
 
   // switch schema dynamically based on currentState
   const formSchema = currentState === "Sign Up" ? signUpSchema : loginSchema;
@@ -93,7 +93,6 @@ const LoginPopup = ({ isOpen, onClose }) => {
         toast.error(res.data.message);
       }
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong! ", error);
     }
   }
@@ -102,10 +101,6 @@ const LoginPopup = ({ isOpen, onClose }) => {
     setCurrentState(state);
     form.reset();
   };
-
-  useEffect(() => {
-    console.log("🟡 Current State:", currentState);
-  }, [currentState]);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>

@@ -2126,7 +2126,7 @@ body {
 .custom-navbar {
   position: absolute;
   top: 100%;
-  right: 0.25rem;
+  left: 0.25rem;
   z-index: 100;
   margin-top: 0.5rem;
   display: flex;
@@ -2135,7 +2135,7 @@ body {
   gap: 0.625rem;
   border-radius: calc(var(--radius) - 4px);
   --tw-bg-opacity: 1;
-  background-color: rgb(226 232 240 / var(--tw-bg-opacity, 1));
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.75rem;
@@ -2703,6 +2703,12 @@ body {
 
   .md\:justify-between {
     justify-content: space-between;
+  }
+
+  .md\:space-x-0 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0px * var(--tw-space-x-reverse));
+    margin-left: calc(0px * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .md\:rounded-md {

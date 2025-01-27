@@ -1,7 +1,7 @@
 
 import LoginButton from './LoginButton'
 
-const Navbar = ({ navOpen }) => {
+const Navbar = ({ navOpen, setNavOpen }) => {
   const navItems = [
     {
       label: "Home",
@@ -27,11 +27,10 @@ const Navbar = ({ navOpen }) => {
   return (
     <nav className={'custom-navbar ' + (navOpen ? "active" : "")}>
       {navItems.map(({ label, link, className }, key) => (
-        <a href={link} key={key}  className={className}>
+        <a href={link} key={key}  className={className} onClick={() => setNavOpen(false)}>
           {label}
         </a>
       ))}
-      <LoginButton label={"Login"} className={"md:hidden"}/>
     </nav>
   )
 }
