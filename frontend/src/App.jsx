@@ -14,6 +14,7 @@ import LoginPopup from "./components/LoginPopup";
 import Profile from "./pages/Profile";
 import Verify from "./pages/Verify";
 import MyOrders from "./pages/MyOrders";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const [isLoginPopOpen, setIsLoginPopOpen] = useState(false);
@@ -37,6 +38,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/verify" element={<Verify />} />
         <Route path="/myorder" element={<MyOrders />} />
+        <Route path="*" element={<PageNotFound/>}/>
       </Routes>
       <Footer />
     </>

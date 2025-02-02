@@ -49,6 +49,7 @@ import rating_starts from "./rating_starts.png"
 import order_success from "./order_success.gif";
 import order_cancel from "./order_cancel.gif";
 import delivery_man from "./delivery_man.png"
+import page_not_found from './page_not_found.gif'
 
 
 export const assets = {
@@ -60,7 +61,8 @@ export const assets = {
   order_success,
   order_cancel,
   delivery_man,
-  rating_starts
+  rating_starts,
+  page_not_found
 };
 
 export const menu_list = [
