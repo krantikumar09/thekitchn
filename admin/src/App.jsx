@@ -13,6 +13,7 @@ import ProductList from "./pages/ProductList";
 import Orders from "./pages/Orders";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PageNotFound from "./pages/PageNotFound";
 
 export const API_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -38,6 +39,7 @@ function App() {
               <Route path="/add" element={<AddProduct />} />
               <Route path="/all-products" element={<ProductList />} />
               <Route path="/orders" element={<Orders />} />
+              <Route path="*" element={<PageNotFound/>}/>
             </Routes>
           </section>
         </SidebarInset>
