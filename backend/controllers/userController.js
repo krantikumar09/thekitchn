@@ -30,20 +30,23 @@ const loginUser = async (req, res) => {
     const token = createToken(user._id);
 
     res.json({ success: true, token, message: "Logged In!" });
-  } catch (error) {}
+  } catch (error) {
+    console.log("Error in: ", error);
+    res.json({ success: false, message: "Something went wrong!" });
+  }
 };
 
 // register user
 const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    // checking user exists
+
     const exists = await userModel.findOne({ email });
+
     if (exists) {
       return res.json({ success: false, message: "User already exists!" });
     }
 
-    // validate data
     if (!validator.isEmail(email)) {
       return res.json({
         success: false,
@@ -58,7 +61,6 @@ const registerUser = async (req, res) => {
       });
     }
 
-    // hashing
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -68,10 +70,13 @@ const registerUser = async (req, res) => {
       password: hashedPassword,
     });
 
-    const user = await newUser.save();
-    const token = createToken(user._id);
+    await newUser.save();
 
-    res.json({ success: true, token, message: "Registration successfull!" });
+    // Don't create token here
+    res.json({
+      success: true,
+      message: "Registration successful! Please login now.",
+    });
   } catch (error) {
     console.log("Error in registerUser: ", error);
     res.json({ success: false, message: "Something went wrong!" });

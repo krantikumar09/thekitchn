@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -83,17 +83,30 @@ const LoginPopup = ({ isOpen, onClose }) => {
       const res = await axios.post(newUrl, data, {
         headers: { "Content-Type": "application/json" },
       });
-      
+
       if (res.data.success) {
-        localStorage.setItem("token", res.data.token);
-        setToken(res.data.token);
         toast.success(res.data.message);
-        onClose();
+        if (currentState === "Login") {
+          // Only save token on Login
+          localStorage.setItem("token", res.data.token);
+          setToken(res.data.token);
+          onClose();
+        } else {
+          form.reset({
+            name: "",
+            email: "",
+            password: "",
+            terms: false,
+          });
+          // If registered successfully, switch to Login page
+          setCurrentState("Login");
+        }
       } else {
         toast.error(res.data.message);
       }
     } catch (error) {
-      toast.error("Something went wrong! ", error);
+      toast.error("Something went wrong!");
+      console.log(error);
     }
   }
 
